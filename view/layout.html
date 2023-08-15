@@ -71,6 +71,9 @@
             <div class="dropdown-menu dropdown-menu-right">
               {{if auth.user:}}
               <a class="dropdown-item" href="{{=URL('default','user/profile')}}">{{=T('Profile')}}</a>
+              {{if  auth.user.id==1:}}
+              <a class="dropdown-item" href="{{=URL('acs_empresa','alterar_usuario')}}">{{=T('Trocar Empresa')}}</a>
+              {{pass}}
               {{if 'change_password' not in auth.settings.actions_disabled:}}
               <a class="dropdown-item" href="{{=URL('default','user/change_password')}}">{{=T('Change Password')}}</a>
               {{pass}}
