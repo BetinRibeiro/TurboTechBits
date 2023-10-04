@@ -6,6 +6,7 @@ db.auth_user.id.readable = False
 db.define_table('empresa',
                 Field('nome', 'string', label='Nome', requires=IS_UPPER()),
                 Field('ativo', 'boolean', writable=False, readable=False, default=True, label='Ativo'),
+                Field('paginacao', 'integer', writable=True, readable=True, default=10),
                 Field('observacao', 'text', label='Observação', writable=False, readable=False),
                 auth.signature,
                 format='%(nome)s')
