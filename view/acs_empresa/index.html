@@ -1,22 +1,16 @@
-{{extend 'layout.html'}} <!-- Extensão para o layout principal -->
+{{extend 'layout.html'}}
 
 <div class="py-3 text-center">
     <div class="container">
-        <!-- bloco 01 -->
-        <div class="row">
             <div class="text-right  d-flex justify-content-between align-items-center">
-                <!-- Informações de vendas do mês e link para alterar -->
-                <p>Vendas do mês {{=dinheiro(0)}}</p>
-                <span class="badge badge-primary badge-pill">
-                    <a class="text-light" href="{{=URL('alterar')}}">{{=empresa.nome}}</a>
+                <span class="badge badge-primary badge-pill" >
+                  <a class="text-light" href="{{=URL('alterar')}}">{{=empresa.nome}}</a>
                 </span> 
             </div>
-            <hr> <!-- Linha horizontal -->
+            <hr>
             <div class="row g-4">
-                <!-- Blocos de informações -->
                 <div class="col-sm-6 col-xl-3">
-                    <!-- Bloco "À Receber" -->
-                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                    <div class="bg-light border rounded d-flex align-items-center justify-content-between p-4 m-1">
                         <i class="fa fa-pie-chart fa-3x text-primary"></i>
                         <div class="ms-3">
                             <p class="mb-2">À Receber</p>
@@ -25,16 +19,28 @@
                         </div>
                     </div>
                 </div>
-                <!-- Outros blocos similares para "À Pagar", "Entradas/Mês" e "Pagamentos/Mês" -->
-            </div>
-
-                <!-- final do bloco 01 -->
-  
-                <!-- bloco 02 -->
-            <div class="row">
                 <div class="col-sm-6 col-xl-3">
-                    <!-- Bloco "Pagamentos/Mês" -->
-                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                    <div class="bg-light border rounded d-flex align-items-center justify-content-between p-4 m-1">
+                        <i class="fa fa-bar-chart fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">À Pagar<p>
+                            <hr>
+                            <h6 class="mb-0">{{=dinheiro(0)}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light border rounded d-flex align-items-center justify-content-between p-4 m-1">
+                        <i class="fa fa-line-chart fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Entradas/Mês</p>
+                            <hr>
+                            <h6 class="mb-0">{{=dinheiro(0)}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light border rounded d-flex align-items-center justify-content-between p-4 m-1">
                         <i class="fa fa-area-chart fa-3x text-primary"></i>
                         <div class="ms-3">
                             <p class="mb-2">Pagamentos/Mês</p>
@@ -45,26 +51,26 @@
                 </div>
             </div>
             <div class="row py-3">
-                <div class="col-md-6 col-6">
-                    <!-- Bloco "Entradas Média Dia" -->
-                    <div class="blockquote border">
-                        <p class="mb-0 ">{{=dinheiro(0)}}</p>
-                        <div class="blockquote-footer my-1">
-                            Entradas Média Dia
+                <div class="col-sm-6 col-xl-6">
+                    <div class="bg-light border rounded d-flex align-items-center justify-content-between p-4 m-1">
+                        <i class="fa fa-line-chart fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Entradas Média Dia</p>
+                            <hr>
+                            <h6 class="mb-0">{{=dinheiro(0)}}</h6>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-6">
-                    <!-- Bloco "Saídas Média Dia" -->
-                    <div class="blockquote border">
-                        <p class="mb-0 ">{{=dinheiro(0)}}</p>
-                        <div class="blockquote-footer my-1">
-                            Saídas Média Dia
+                <div class="col-sm-6 col-xl-6">
+                    <div class="bg-light border rounded d-flex align-items-center justify-content-between p-4 m-1">
+                        <i class="fa fa-line-chart fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Saídas Média Dia</p>
+                            <hr>
+                            <h6 class="mb-0">{{=dinheiro(0)}}</h6>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-      <!-- Final do bloco 02 -->
     </div>
 </div>
