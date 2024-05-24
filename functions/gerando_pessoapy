@@ -1,0 +1,93 @@
+# -*- coding: utf-8 -*-
+from datetime import datetime, timedelta
+import random
+
+# Lista de nomes masculinos
+nomes_masculinos = ["João", "Santiago", "Martim", "Rodrigo", "Afonso", "Francisco", "Tiago", "Diogo", "Miguel", "Tomás"]
+
+# Lista de nomes femininos
+nomes_femininos = ["Maria", "Leonor", "Matilde", "Beatriz", "Ana", "Mariana", "Madalena", "Catarina", "Carolina", "Francisca"]
+
+# Lista de sobrenomes mais usados em Portugal
+sobrenomes_mais_usados = ["Silva", "Santos", "Ferreira", "Pereira", "Oliveira", "Costa", "Rodrigues", "Martins", "Jesus", "Sousa", "Fernandes", "Gonçalves", "Gomes", "Lopes", "Marques", "Alves", "Almeida", "Ribeiro", "Pinto", "Carvalho", "Teixeira", "Moreira", "Correia", "Mendes", "Nunes"]
+
+# Lista de sobrenomes das famílias mais importantes de Portugal
+sobrenomes_familias_importantes = ["da Gama", "Vaz", "de Caminha", "Álvares", "Guimarães", "Bragança", "Braga", "Coimbra", "Sampaio", "Albuquerque", "Castro", "da Veiga"]
+
+# Lista de sobrenomes comuns de origem judaica em Portugal
+sobrenomes_origem_judaica = ["Rodrigues", "Nunes", "Henriques", "Mendes", "Correia", "Lopes", "Costa", "Cardoso", "Silva", "Fonseca"]
+
+cargos_oficina_mecanica = ["Mecânico de Automóveis", "Ajudante de Mecânico", "Chefe de Oficina", "Gerente de Oficina", "Consultor Técnico", "Eletricista de Automóveis", "Alinhador e Balanceador", "Funileiro", "Pintor Automotivo", "Técnico em Diagnóstico", "Borracheiro", "Atendente/Recepcionista", "Estagiário de Mecânica", "Especialista em Ar-Condicionado Automotivo", "Administrador Financeiro", "Estoquista/Almoxarife", "Lavador de Carros"]
+
+
+lista_nomes = nomes_femininos+nomes_masculinos
+lista_sobrenomes = sobrenomes_familias_importantes+sobrenomes_mais_usados+sobrenomes_origem_judaica
+
+lista_endereco = ["RUA SAO JOSE", "RUA SAO PAULO", "RUA SANTO ANTONIO", "AVENIDA BRASIL", "RUA SAO PEDRO", "RUA SAO JOAO", "RUA SAO FRANCISCO", "RUA SETE DE SETEMBRO", "RUA QUINZE DE NOVEMBRO", "RUA TIRADENTES", "RUA SAO SEBASTIAO", "RUA BELA VISTA", "RUA SANTA LUZIA", "RUA SAO JORGE", "RUA DEZENOVE", "RUA CASTRO ALVES", "RUA DUQUE DE CAXIAS", "RUA RUI BARBOSA", "RUA SANTA CATARINA", "RUA SANTOS DUMONT", "RUA ESPIRITO SANTO", "RUA VINTE E UM", "RUA VINTE E DOIS", "RUA DA PAZ", "RUA TREZE DE MAIO", "RUA RIO DE JANEIRO", "RUA BELO HORIZONTE", "RUA DAS FLORES", "RUA JOSE BONIFACIO", "RUA PRIMEIRO DE MAIO", "RUA BOA VISTA", "RUA SÃO LUIZ", "RUA VINTE E QUATRO", "RUA SANTA RITA"]
+
+lista_cidades = ["Juazeiro do Norte - CE", "Crato - CE", "Barbalha - CE", "Missão Velha - CE", "Nova Olinda - CE", "Santana do Cariri - CE", "Altaneira - CE", "Assaré - CE", "Campos Sales - CE", "Araripe - CE", "Farias Brito - CE", "Jardim - CE", "Mauriti - CE", "Milagres - CE", "Potengi - CE", "Salitre - CE", "Caririaçu - CE", "Granjeiro - CE", "Penaforte - CE", "Jati - CE", "Brejo Santo - CE", "Barro - CE", "Abaiara - CE", "Antonina do Norte - CE"]
+
+
+def gerar_nome_completo(nomes, sobrenomes):
+    nome_aleatorio = random.choice(nomes)
+    sobrenome_aleatorio = random.choice(sobrenomes)
+    return f"{nome_aleatorio} {sobrenome_aleatorio}"
+
+def gerar_numero_telefone(prefixo="88"):
+    numero_aleatorio = f"9{random.randint(1000, 9999)}-{random.randint(1000, 9999)}"
+    return f"({prefixo}) {numero_aleatorio}"
+
+def gerar_cpf():
+    numeros = [random.randint(0, 9) for _ in range(9)]
+    # Gerar os dois dígitos verificadores
+    for _ in range(2):
+        soma = sum((len(numeros) + 1 - i) * n for i, n in enumerate(numeros))
+        digito = (soma * 10 % 11) % 10
+        numeros.append(digito)
+    cpf = f"{numeros[0]}{numeros[1]}{numeros[2]}.{numeros[3]}{numeros[4]}{numeros[5]}.{numeros[6]}{numeros[7]}{numeros[8]}-{numeros[9]}{numeros[10]}"
+    return cpf
+
+def gerar_endereco_aleatorio(ruas):
+    rua_aleatoria = random.choice(ruas)
+    numero_aleatorio = random.randint(1, 9999)
+    return f"{rua_aleatoria} - {numero_aleatorio}"
+
+def cidade_aleatoria(lista_cidades):
+    return random.choice(lista_cidades)
+
+
+def gerar_dados_pessoais(nomes, sobrenomes, ruas, cidades,cargos_oficina_mecanica):
+    dados = {}
+    dados["Nome"] = gerar_nome_completo(nomes, sobrenomes)
+    dados["Telefone"] = gerar_numero_telefone()
+    dados["CPF"] = gerar_cpf()
+    dados["Endereço"] = gerar_endereco_aleatorio(ruas)
+    dados["Cidade"] = cidade_aleatoria(cidades)
+    dados["Cargo"] = cidade_aleatoria(cargos_oficina_mecanica)
+    return dados
+
+def gerar_data_hora_aleatoria():
+    # Obtendo a data atual
+    data_atual = datetime.now()
+    # Subtraindo 12 meses da data atual para obter a data mínima
+    data_minima = data_atual - timedelta(days=365)
+    # Gerando uma data aleatória dentro dos últimos 12 meses
+    data_aleatoria = data_minima + timedelta(days=random.randint(0, 365))
+    # Gerando uma hora aleatória entre 0 e 23
+    hora_aleatoria = random.randint(0, 23)
+    # Gerando uma minuto aleatório entre 0 e 59
+    minuto_aleatorio = random.randint(0, 59)
+    # Retornando a data e hora aleatórias
+    return data_aleatoria.replace(hour=hora_aleatoria, minute=minuto_aleatorio)
+
+# Função para inserir um novo registro em qualquer tabela
+def inserir_registro(tabela, empresa_id, nome, telefone, endereco, cidade, ativo, cpf_cnpj, cargo):
+    # Gerando data e hora aleatórias
+    data_aleatoria = gerar_data_hora_aleatoria()
+    # Inserindo o registro na tabela especificada
+    return db[tabela].insert(empresa=empresa_id, nome=nome, telefone=telefone, endereco=endereco, cidade=cidade, ativo=ativo, cpf_cnpj=cpf_cnpj, cpf=cpf_cnpj, cargo=cargo, created_on=data_aleatoria)
+
+def inserir_pessoa(tabela, empresa_id):
+    dados_pessoais = gerar_dados_pessoais(lista_nomes, lista_sobrenomes, lista_endereco, lista_cidades, cargos_oficina_mecanica)
+    inserir_registro(tabela, empresa_id, dados_pessoais["Nome"], dados_pessoais["Telefone"], dados_pessoais["Endereço"], dados_pessoais["Cidade"], True, dados_pessoais["CPF"], dados_pessoais["Cargo"])
+    return True
