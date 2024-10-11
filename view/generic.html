@@ -30,12 +30,20 @@ It is used as default when a view is not provided for your controllers
 
 
 <script>
-    jQuery(function($){
-        $('#cliente_telefone').mask("(00) 00000-0009", {reverse: false});
-        $('#cliente_cpf').mask("000.000.000-00", {reverse: true});
-        $('#delegacia_telefone').mask("(00) 00000-0009", {reverse: false});
-        $('#delegacia_cpf').mask("000.000.000-00", {reverse: true});
-        $('#associado_telefone').mask("(00) 00000-0009", {reverse: false});
-        $('#associado_cpf').mask("000.000.000-00", {reverse: true});
+    jQuery(function($) {
+        // Máscara para telefone
+        $('#cliente_telefone, #delegacia_telefone, #associado_telefone').mask("(00) 00000-0009", { reverse: false });
+
+        // Função de máscara para CPF e CNPJ
+        var cpfCnpjOptions = {
+            onKeyPress: function(cpfcnpj, e, field, options) {
+                // Máscaras para CPF e CNPJ
+                var mask = cpfcnpj.length < 15 ? '000.000.000-000' : '00.000.000/0000-00';
+                $(field).mask(mask, options);
+            }
+        };
+
+        // Aplica a máscara inicial de CPF
+        $('#cliente_cpf, #delegacia_cpf, #associado_cpf').mask('000.000.000-000', cpfCnpjOptions);
     });
 </script>
