@@ -2,6 +2,7 @@
 
 # Definição da tabela 'pessoa' com CPF, telefone e nome completo
 db.define_table('pessoa',
+    Field('empresa', 'reference empresa', writable=False, readable=False, label='Empresa'),
     Field('nome_completo', 'string', label='Nome Completo', default='', requires=IS_NOT_EMPTY()),  # Campo para nome completo
     Field('cpf', 'string', label='CPF', default='', requires=IS_NOT_EMPTY()),  # Campo para CPF
     Field('telefone', 'string', label='Telefone', default='', requires=IS_NOT_EMPTY())  # Campo para telefone
