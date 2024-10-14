@@ -168,3 +168,28 @@ def alteracao(tabela_nome):
 
     # Retorna o formulário para a visualização
     return dict(form=form)
+
+
+#######################COMO UTILIZAR NO CONTROLLER#######################################
+
+# -*- coding: utf-8 -*-
+@auth.requires_login()
+def index():
+    return index_(db.produto, db.produto.descricao)
+
+
+@auth.requires_login()
+def cadastrar():
+    return cadastro('produto')
+
+
+@auth.requires_login()
+def alterar():
+    return alteracao('produto')
+
+
+@auth.requires_login()
+def acessar():
+    response.view = 'generic.html'  # usa uma visualização genérica
+    mensagem = 'Aguardando desenvolvimento'
+    return locals()
