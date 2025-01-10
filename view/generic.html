@@ -27,6 +27,11 @@ It is used as default when a view is not provided for your controllers
     </div>
 </div>
 
+<!-- Inclusão do CSS para Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Inclusão do JavaScript para Select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
 <script>
@@ -45,5 +50,10 @@ It is used as default when a view is not provided for your controllers
 
         // Aplica a máscara inicial de CPF
         $('#cliente_cpf, #delegacia_cpf, #associado_cpf').mask('000.000.000-000', cpfCnpjOptions);
+        
+        // Aplicando o Select2 a todos os elementos com a classe 'form-control' assim que o documento estiver pronto
+        $(document).ready(function() {
+            $('.form-control').select2();
+        });
     });
 </script>
