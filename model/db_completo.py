@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import os
+import time
+import datetime
+import pytz
+
+# Define o timezone padrão
+os.environ['TZ'] = 'America/Sao_Paulo'
+time.tzset()
+
 # -------------------------------------------------------------------------
 # Configuração do AppConfig facilitada. Olhe dentro de private/appconfig.ini
 # Auth é para autenticação e controle de acesso
@@ -124,6 +133,7 @@ response.show_toolbar = configuration.get('app.toolbar')
 # -------------------------------------------------------------------------
 response.google_analytics_id = configuration.get('google.analytics_id')
 
+T.force('pt-br')
 # -------------------------------------------------------------------------
 # talvez use o agendador
 # -------------------------------------------------------------------------
